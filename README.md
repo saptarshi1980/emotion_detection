@@ -66,9 +66,14 @@ dvc metrics show
 
 
 dvc stage add --force -n data_ingestion -d sentiment_analysis/data_ingestion.py -p data_ingestion.test_size -o data/raw python sentiment_analysis/data_ingestion.py
+
 dvc stage add --force -n data_preprocessing -d sentiment_analysis/data_preprocessing.py -o data/raw python sentiment_analysis/data_preprocessing.py
+
 dvc stage add --force -n feature_engineering -d sentiment_analysis/feature_engineering.py -p feature_engineering.max_features -o data/features python sentiment_analysis/feature_engineering.py
+
 dvc stage add --force -n model_building -d sentiment_analysis/model_building.py -p model_building.n_estimators -p model_building.learning_rate -d data/features -o models/model.pkl python sentiment_analysis/model_building.py
+
+
 dvc stage add --force -n model_evaluation -d sentiment_analysis/model_evaluation.py -d models/model.pkl -d data/features --metrics metrics.json python sentiment_analysis/model_evaluation.py
 
 
