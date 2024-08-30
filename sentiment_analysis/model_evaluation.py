@@ -69,7 +69,7 @@ def evaluate_model(model, X: np.ndarray, y: np.ndarray) -> dict:
 def save_metrics(metrics: dict, file_path: str):
     """Saves the evaluation metrics to a JSON file."""
     try:
-        logging.info("Loggin file path-",file_path)
+        #logging.info(f"Loggin file path-{file_path}")
         with open(file_path, 'w') as file:
             json.dump(metrics, file, indent=4)
     except Exception as e:
@@ -77,10 +77,12 @@ def save_metrics(metrics: dict, file_path: str):
     
 
 def main():
+    
     # Define file paths
+    logging.info("Performing- Model Evaluation")
     timestamp = time.strftime("%Y%m%d-%H%M")
     model_file_path = './models/model.pkl'
-    test_file_path = './data/features/test_bow.csv'
+    test_file_path = './data/features/test_tfidf.csv'
     metrics_file_path = 'metrics.json'
     metrics_history_file_path = f"./models/history/metrics_{timestamp}.json"
 
@@ -94,6 +96,7 @@ def main():
     X_test, y_test = split_features_and_labels(test_data)
 
     # Evaluate the model
+    
     metrics = evaluate_model(model, X_test, y_test)
 
     # Save the evaluation metrics

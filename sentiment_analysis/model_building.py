@@ -61,7 +61,7 @@ def main():
     # Define file paths
     timestamp = time.strftime("%Y%m%d-%H%M")
     #output_file = f"models/model_{timestamp}.pkl"
-    train_file_path = './data/features/train_bow.csv'
+    train_file_path = './data/features/train_tfidf.csv'
     model_file_path = './models/model.pkl'
     model_history_file_path = f"./models/history/model_{timestamp}.pkl"
     

@@ -10,6 +10,7 @@ import yaml
 def load_data(file_path: str) -> pd.DataFrame:
     """Loads the CSV data into a DataFrame."""
     try:
+        #logging.info("Performing Data Ingestion")
         return pd.read_csv(file_path)
     except Exception as e:
         raise CustomException(e,sys)
@@ -44,11 +45,14 @@ def save_data(train_data: pd.DataFrame, test_data: pd.DataFrame, data_path: str)
 
 def main():
     # Define paths and parameters
+    
+    logging.info("Performing Data Ingestion")
     test_size = yaml.safe_load(open('params.yaml','r'))['data_ingestion']['test_size']
     input_file_path = './data/tweet_emotions.csv'
     data_path = os.path.join("data", "raw")
     
     # Load data
+    
     df = load_data(input_file_path)
     
     # Preprocess data
@@ -58,6 +62,7 @@ def main():
     train_data, test_data = split_data(final_df,test_size=test_size)
     
     # Save data
+    
     save_data(train_data, test_data, data_path)
 
 if __name__ == "__main__":

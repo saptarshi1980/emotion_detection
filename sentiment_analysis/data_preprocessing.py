@@ -7,6 +7,11 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import string
 import re
+from logger import logging
+from exception import CustomException
+import os,sys
+import yaml
+
 
 
 def load_data(train_file_path: str, test_file_path: str):
@@ -71,6 +76,7 @@ def save_processed_data(train_data: pd.DataFrame, test_data: pd.DataFrame, outpu
 
 def main():
     # Define file paths
+    logging.info("Performing- DATA PRE-PROCESSING")
     train_file_path = './data/raw/train.csv'
     test_file_path = './data/raw/test.csv'
     output_dir = os.path.join("data", "processed")
