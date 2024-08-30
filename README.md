@@ -73,6 +73,9 @@ dvc stage add --force -n model_evaluation -d sentiment_analysis/model_evaluation
 
 
 
+git branch -M main
+
+
 
 
 --------
